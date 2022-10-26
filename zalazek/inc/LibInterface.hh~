@@ -10,7 +10,7 @@ using namespace std;
 class LibInterface{
 
 private:
-void* _LibHandler;
+void* _LibHandler();
 
 public:
 string _CmdName();

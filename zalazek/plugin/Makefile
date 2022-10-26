@@ -1,7 +1,10 @@
 
 
 __start__: obj __lines_for_space__ ../libs/libInterp4Move.so 
-	@echo "  Tworzenie wtyczki zakonczone."
+	@echo "  Tworzenie wtyczki Move zakonczone."
+	@echo "  Tworzenie wtyczki Set zakonczone."
+	@echo "  Tworzenie wtyczki Rotate zakonczone."
+	@echo "  Tworzenie wtyczki Pasue zakonczone."
 	@echo
 
 obj:
@@ -23,10 +26,40 @@ __lines_for_space__:
 	@echo "  Wtyczka dla polecenia 'Move' zostala utworzona."
 	@echo
 
+../libs/libInterp4Set.so: obj/Interp4Set.o
+	g++ ${LDFLAGS} -o ../libs/libInterp4Set.so obj/Interp4Set.o
+	@echo
+	@echo "  Wtyczka dla polecenia 'Set' zostala utworzona."
+	@echo
+
+../libs/libInterp4Rotate.so: obj/Interp4Rotate.o
+	g++ ${LDFLAGS} -o ../libs/libInterp4Rotate.so obj/Interp4Rotate.o
+	@echo
+	@echo "  Wtyczka dla polecenia 'Rotate' zostala utworzona."
+	@echo
+
+../libs/libInterp4Pause.so: obj/Interp4Pasue.o
+	g++ ${LDFLAGS} -o ../libs/libInterp4Pause.so obj/Interp4Pause.o
+	@echo
+	@echo "  Wtyczka dla polecenia 'Pasue' zostala utworzona."
+	@echo
+
 
 obj/Interp4Move.o: src/Interp4Move.cpp ../inc/Interp4Command.hh\
                         inc/Interp4Move.hh 
 	g++ -c ${CPPFLAGS} -o obj/Interp4Move.o src/Interp4Move.cpp
+
+obj/Interp4Set.o: src/Interp4Set.cpp ../inc/Interp4Command.hh\
+                        inc/Interp4Set.hh 
+	g++ -c ${CPPFLAGS} -o obj/Interp4Set.o src/Interp4Set.cpp
+
+obj/Interp4Rotate.o: src/Interp4Rotate.cpp ../inc/Interp4Command.hh\
+                        inc/Interp4Rotate.hh 
+	g++ -c ${CPPFLAGS} -o obj/Interp4Rotate.o src/Interp4Rotate.cpp
+
+obj/Interp4Pasue.o: src/Interp4Pause.cpp ../inc/Interp4Command.hh\
+                        inc/Interp4Pause.hh 
+	g++ -c ${CPPFLAGS} -o obj/Interp4Pause.o src/Interp4Pause.cpp
 
 
 clean:
