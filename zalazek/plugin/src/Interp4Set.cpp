@@ -28,7 +28,7 @@ Interp4Command* CreateCmd(void)
 /*!
  *
  */
-Interp4Set::Interp4Set(): _Xposition(0), _Ypostion(0), _DegreeozO(0)
+Interp4Set::Interp4Set(): _Xposition(0), _Yposition(0), _DegreeozO(0)
 {}
 
 
@@ -40,7 +40,7 @@ void Interp4Set::PrintCmd() const
   /*
    *  Tu trzeba napisać odpowiednio zmodyfikować kod poniżej.
    */
-  cout << GetCmdName() << " " <<  _Xposition << " " << _Ypostion << " " << _DegreeozO << " 10 10  20" << endl;
+  cout << GetCmdName() << " " <<  _Xposition << " " << _Yposition << " " << _DegreeozO << " 10 10  20" << endl;
 }
 
 
@@ -68,7 +68,7 @@ bool Interp4Set::ExecCmd( MobileObj  *pMobObj,  int  Socket) const
 /*!
  *
  */
-bool Interp4Move::ReadParams(std::istream& Strm_CmdsList)
+bool Interp4Set::ReadParams(std::istream& Strm_CmdsList)
 {
   /*
    *  Tu trzeba napisać odpowiedni kod.

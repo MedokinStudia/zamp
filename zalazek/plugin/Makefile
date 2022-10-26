@@ -1,6 +1,8 @@
 
 
-__start__: obj __lines_for_space__ ../libs/libInterp4Move.so 
+__start__: obj __lines_for_space__ ../libs/libInterp4Move.so \
+	../libs/libInterp4Set.so ../libs/libInterp4Rotate.so \
+	../libs/libInterp4Pause.so
 	@echo "  Tworzenie wtyczki Move zakonczone."
 	@echo "  Tworzenie wtyczki Set zakonczone."
 	@echo "  Tworzenie wtyczki Rotate zakonczone."
