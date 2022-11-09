@@ -7,7 +7,7 @@
 #endif
 
 #include "Interp4Command.hh"
-
+#include <string>
 /*!
  * \file
  * \brief Definicja klasy Interp4Pause
@@ -62,6 +62,7 @@ class Interp4Pause: public Interp4Command {
    *  Ta metoda nie musi być zdefiniowna w klasie bazowej.
    */
   static Interp4Command* CreateCmd();
+  std::string GetObjName(){return "";}
  };
 
 #endif

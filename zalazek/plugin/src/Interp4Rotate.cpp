@@ -40,7 +40,7 @@ void Interp4Rotate::PrintCmd() const
   /*
    *  Tu trzeba napisać odpowiednio zmodyfikować kod poniżej.
    */
-  cout << GetCmdName() << " " << _Angular_speedoS << " " << _DegreeO << " 10  20" << endl;
+  cout << GetCmdName() << " " << _Obj_name << " " << _Angular_speedoS << " " << _DegreeO << endl;
 }
 
 
@@ -70,9 +70,26 @@ bool Interp4Rotate::ExecCmd( MobileObj  *pMobObj,  int  Socket) const
  */
 bool Interp4Rotate::ReadParams(std::istream& Strm_CmdsList)
 {
-  /*
-   *  Tu trzeba napisać odpowiedni kod.
-   */
+    if(!(Strm_CmdsList >> _Obj_name))
+    {
+        std::cout << "Blad nazwy"<< endl;
+        return 1;
+    }
+
+    if(!(Strm_CmdsList >> _Angular_speedoS ))
+    {
+        std::cout << "Blad predkosci katowej"<< endl;
+        return 1;
+    }
+
+    if(!(Strm_CmdsList >> _DegreeO))
+    {
+        std::cout << "Blad katu"<< endl;
+        return 1;
+    }
+    
+
+
   return true;
 }
 

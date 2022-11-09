@@ -40,7 +40,7 @@ void Interp4Set::PrintCmd() const
   /*
    *  Tu trzeba napisać odpowiednio zmodyfikować kod poniżej.
    */
-  cout << GetCmdName() << " " <<  _Xposition << " " << _Yposition << " " << _DegreeozO << " 10 10  20" << endl;
+  cout << GetCmdName() << " " << _Obj_name << " " <<  _Xposition << " " << _Yposition << " " << _DegreeozO << endl;
 }
 
 
@@ -70,9 +70,32 @@ bool Interp4Set::ExecCmd( MobileObj  *pMobObj,  int  Socket) const
  */
 bool Interp4Set::ReadParams(std::istream& Strm_CmdsList)
 {
-  /*
-   *  Tu trzeba napisać odpowiedni kod.
-   */
+    if(!(Strm_CmdsList >> _Obj_name))
+    {
+        std::cout << "Blad nazwy"<< endl;
+        return 1;
+    }
+
+    if(!(Strm_CmdsList >> _Xposition))
+    {
+        std::cout << "Blad WspX"<< endl;
+        return 1;
+    }
+
+    if(!(Strm_CmdsList >> _Yposition))
+    {
+        std::cout << "Blad Wspy"<< endl;
+        return 1;
+    }
+
+    if(!(Strm_CmdsList >> _DegreeozO))
+    {
+        std::cout << "Blad kata"<< endl;
+        return 1;
+    }
+    
+
+
   return true;
 }
 

@@ -7,7 +7,7 @@
 #endif
 
 #include "Interp4Command.hh"
-
+#include <string>
 /*!
  * \file
  * \brief Definicja klasy Interp4Rotate
@@ -26,7 +26,8 @@ class Interp4Rotate: public Interp4Command {
    *  do przechowywania wartości parametrów danego polecenia.
    *  Ponieżej zdefiniowane jest tylko jedno pole jako przykład.
    */
-  double  _Angular_speedoS;
+  std::string _Obj_name;
+  double _Angular_speedoS;
   double _DegreeO;
  public:
   /*!
@@ -63,6 +64,7 @@ class Interp4Rotate: public Interp4Command {
    *  Ta metoda nie musi być zdefiniowna w klasie bazowej.
    */
   static Interp4Command* CreateCmd();
+  std::string GetObjName(){return _Obj_name;}
  };
 
 #endif

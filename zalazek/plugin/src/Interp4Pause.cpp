@@ -40,7 +40,7 @@ void Interp4Pause::PrintCmd() const
   /*
    *  Tu trzeba napisać odpowiednio zmodyfikować kod poniżej.
    */
-  cout << GetCmdName() << " " << _Time_mS  << " 10 " << endl;
+  cout << GetCmdName() << " " << _Time_mS << endl;
 }
 
 
@@ -70,9 +70,11 @@ bool Interp4Pause::ExecCmd( MobileObj  *pMobObj,  int  Socket) const
  */
 bool Interp4Pause::ReadParams(std::istream& Strm_CmdsList)
 {
-  /*
-   *  Tu trzeba napisać odpowiedni kod.
-   */
+    if(!(Strm_CmdsList >> _Time_mS))
+    {
+        std::cout << "Blad czasu pauzy"<< endl;
+        return 1;
+    }
   return true;
 }
 

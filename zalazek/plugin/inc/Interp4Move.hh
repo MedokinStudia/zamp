@@ -7,7 +7,7 @@
 #endif
 
 #include "Interp4Command.hh"
-
+#include <string>
 /*!
  * \file
  * \brief Definicja klasy Interp4Move
@@ -26,6 +26,7 @@ class Interp4Move: public Interp4Command {
    *  do przechowywania wartości parametrów danego polecenia.
    *  Ponieżej zdefiniowane jest tylko jedno pole jako przykład.
    */
+  std::string  _Obj_name;
   double  _Speed_mmS;
   double  _Distance_m;
  public:
@@ -63,6 +64,8 @@ class Interp4Move: public Interp4Command {
    *  Ta metoda nie musi być zdefiniowna w klasie bazowej.
    */
   static Interp4Command* CreateCmd();
+  
+  std::string GetObjName(){return _Obj_name;}
  };
 
 #endif
