@@ -1,28 +1,37 @@
 #ifndef  SET4LIBRARIES_HH
 #define  SET4LIBRARIES_HH
 
-#include "Interp4Command.hh"
-#include <string>
 #include <iostream>
-#include <map>
-#include <memory>
+#include <string>
 #include <sstream>
+#include <cassert>
+#include <cstdio>
 #include <dlfcn.h>
+#include <memory>
 #include <vector>
-#include "LibInterface.hh"
-#include "Scene.hh"
+#include "../inc/LibInterface.hh"
+#include "../inc/Scene.hh"
+#include "../inc/Interp4Command.hh"
 
 using namespace std;
 
 class Set4Libraries{
 private:
-map <string, shared_ptr<LibInterface>> _mapLibraries;
-Interp4Command * _cmdInstance;
+map <string, LibInterface *> mapLibraries;
+Interp4Command * pcmdInstance;
+Scene * pscene;
 
 public:
-bool execPreprocessor(const char * fileName, istringstream &Istrm4Cmds);
-bool loadLibraries(vector<string> pluginPath);
-bool execCommands(istream &cmdStream, shared_ptr<Scene> &scene);
+Set4Libraries(map <string, MobileObj * > & _Object_List);
+~Set4Libraries();
+
+void LoadLibrary(string path);
+bool ExecPreprocessor(const char * fileName, istringstream &Istrm4Cmds);
+bool ReadCommands(istringstream & iStrm, int socket);
+
+Scene * getScene() {
+    return this -> pscene;
+  }
 };
 
 #endif

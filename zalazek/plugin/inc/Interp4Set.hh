@@ -6,7 +6,7 @@
 # pragma implementation
 #endif
 
-#include "Interp4Command.hh"
+#include "../inc/Interp4Command.hh"
 #include <string>
 /*!
  * \file
@@ -65,7 +65,6 @@ class Interp4Set: public Interp4Command {
    *  Ta metoda nie musi być zdefiniowna w klasie bazowej.
    */
   static Interp4Command* CreateCmd();
-  std::string GetObjName(){return _Obj_name;}
  };
 
 #endif

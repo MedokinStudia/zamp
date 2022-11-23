@@ -4,6 +4,7 @@
 
 #include <string>
 #include "Vector3D.hh"
+#include <sstream>
 
 
 /*!
@@ -65,6 +66,12 @@
         * musi to być nazwa unikalna wśród wszystkich obiektów na scenie.
         */
        std::string  _Name;
+
+        Vector3D _Scale;
+
+        Vector3D _Shift;
+
+        int color[3];
 
      public:
       /*!
@@ -148,7 +155,23 @@
 	* Udostępnia nazwę obiektu w trybie tylko do odczytu.
         */
        const std::string & GetName() const { return _Name; }
-    };
+
+
+        void SetScale(const Vector3D & Scale) {
+        _Scale = Scale;
+        }
+
+
+        void setColor(const std::string RGB) {
+        std::istringstream IStrm;
+        IStrm.str(RGB);
+        IStrm >> this -> color[0] >> this -> color[1] >> this -> color[2];
+        }
+
+        void setShift(const Vector3D & Shift) {
+        _Shift = Shift;
+        }
+};
 
 
 #endif

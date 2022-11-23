@@ -4,18 +4,32 @@
 #include <map>
 #include <memory>
 #include <string>
+#include <vector>
 
-#include <MobileObj.hh>
+#include "MobileObj.hh"
 
 using namespace std;
 
 class Scene{
 private:
 
-map <string, shared_ptr<MobileObj>> _mapMobileObjects;
-
+map <string,MobileObj*> mapMobileObjects;
 public:
-    MobileObj* FindMobileObj(const char *sName);
-    void AddMobileObj(MobileObj *pMobObj);
+Scene();
+Scene(map < string, MobileObj * > & List);
+~Scene(){
+    mapMobileObjects.clear();
+}
+
+
+MobileObj* FindMobileObj(string sName);
+void AddMobileObj(string sName);
+
+map <string,
+MobileObj * > getObjList() {
+return this -> mapMobileObjects;
+}
+vector < MobileObj * > getObjects();
+
 };
 #endif

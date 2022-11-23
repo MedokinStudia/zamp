@@ -22,14 +22,29 @@ LDFLAGS=-Wall
 
 
 
-interp: obj/main.o obj/LibInterface.o
-	g++ ${LDFLAGS} -o interp  obj/main.o obj/LibInterface.o  -ldl
+interp: obj/main.o obj/LibInterface.o obj/Set4Libraries.o obj/Scene.o obj/xmlinterp.o obj/klient.o obj/Configuration.o
+	g++ ${LDFLAGS} -o interp  obj/main.o obj/LibInterface.o obj/Set4Libraries.o obj/Scene.o obj/xmlinterp.o obj/klient.o obj/Configuration.o -ldl -lxerces-c -pthread 
 
-obj/main.o: src/main.cpp inc/Interp4Command.hh inc/LibInterface.hh
+obj/main.o: src/main.cpp inc/Interp4Command.hh inc/xmlinterp.hh  inc/AccessControl.hh inc/Configuration.hh inc/Port.hh 
 	g++ -c ${CPPFLAGS} -o obj/main.o src/main.cpp
 
 obj/LibInterface.o: src/LibInterface.cpp inc/LibInterface.hh inc/Interp4Command.hh
 	g++ -c ${CPPFLAGS} -o obj/LibInterface.o src/LibInterface.cpp
+
+obj/Set4Libraries.o: src/Set4Libraries.cpp inc/Set4Libraries.hh
+	g++ -c ${CPPFLAGS} -o obj/Set4Libraries.o src/Set4Libraries.cpp
+
+obj/Scene.o: src/Scene.cpp inc/Scene.hh
+	g++ -c ${CPPFLAGS} -o obj/Scene.o src/Scene.cpp
+
+obj/xmlinterp.o: src/xmlinterp.cpp inc/xmlinterp.hh 
+	g++ -c ${CPPFLAGS} -o obj/xmlinterp.o src/xmlinterp.cpp
+
+obj/klient.o: src/klient.cpp  inc/AccessControl.hh inc/Port.hh
+	g++ -c ${CPPFLAGS} -o obj/klient.o src/klient.cpp
+
+obj/Configuration.o: src/Configuration.cpp inc/Configuration.hh 
+	g++ -c ${CPPFLAGS} -o obj/Configuration.o src/Configuration.cpp
 
 
 clean:

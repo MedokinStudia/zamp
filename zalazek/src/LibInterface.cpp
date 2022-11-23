@@ -21,20 +21,10 @@ LibInterface::LibInterface(string fileName)
     //return false;
   }
 
-  _pCreateCmd = *reinterpret_cast<Interp4Command* (**)(void)>(&pFun);
-  
-
-  pFun = dlsym(_LibHandler,"GetCmdName");
-  
-  if (!pFun) 
-  {
-    std::cerr << "!!! Nie znaleziono funkcji GetCmdName dla "<< fileName << std::endl;
-    //return false;
-  }
-  
-  cmdNameFcn = reinterpret_cast<const char* (*)(void)>(pFun);
-
-  cmdName = cmdNameFcn();
+  pCreateCmd =  * reinterpret_cast < Interp4Command * ( * )(void) > (pFun);
+  Interp4Command * pinterp_cmd = pCreateCmd();
+  _Lib_name = pinterp_cmd -> GetCmdName();
+  delete pinterp_cmd;
 }
  
 
