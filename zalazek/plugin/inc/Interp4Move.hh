@@ -45,7 +45,7 @@ class Interp4Move: public Interp4Command {
   /*!
    * \brief Wyświetla nazwę polecenia
    */
-  virtual const char* GetCmdName() const;
+  virtual const char* GetCmdName() const override;
   /*!
    * \brief Wykonuje polecenie oraz wizualizuje jego realizację
    */

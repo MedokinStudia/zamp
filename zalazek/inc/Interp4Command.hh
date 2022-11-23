@@ -44,8 +44,6 @@
     * \brief Czyta wartości parametrów danego polecenia.
     */
    virtual bool ReadParams(std::istream& Strm_CmdsList) = 0;
-
-   virtual std::string GetObjName() = 0;
  };
 
 #endif
