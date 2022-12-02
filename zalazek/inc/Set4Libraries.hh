@@ -12,7 +12,8 @@
 #include "../inc/LibInterface.hh"
 #include "../inc/Scene.hh"
 #include "../inc/Interp4Command.hh"
-
+#include <thread>
+#include "../inc/klient.hh"
 using namespace std;
 
 class Set4Libraries{

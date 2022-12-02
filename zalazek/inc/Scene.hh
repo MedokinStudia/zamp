@@ -7,10 +7,11 @@
 #include <vector>
 
 #include "MobileObj.hh"
+#include "AccessControl.hh"
 
 using namespace std;
 
-class Scene{
+class Scene: public AccessControl {
 private:
 
 map <string,MobileObj*> mapMobileObjects;
@@ -25,8 +26,7 @@ Scene(map < string, MobileObj * > & List);
 MobileObj* FindMobileObj(string sName);
 void AddMobileObj(string sName);
 
-map <string,
-MobileObj * > getObjList() {
+map <string,MobileObj * > getObjList() {
 return this -> mapMobileObjects;
 }
 vector < MobileObj * > getObjects();

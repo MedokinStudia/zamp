@@ -2,7 +2,7 @@
 
 LibInterface::LibInterface(string fileName)
 {
-  const char* (*cmdNameFcn)(void);
+  //const char* (*cmdNameFcn)(void);
   void *pFun;
 
 

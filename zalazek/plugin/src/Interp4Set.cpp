@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Interp4Set.hh"
 #include "MobileObj.hh"
-
+#include "unistd.h"
 using std::cout;
 using std::endl;
 
@@ -28,7 +28,7 @@ Interp4Command* CreateCmd(void)
 /*!
  *
  */
-Interp4Set::Interp4Set(): _Xposition(0), _Yposition(0), _DegreeozO(0)
+Interp4Set::Interp4Set(): _Xposition(0), _Yposition(0), _Kat_Ox(0),_Kat_Oy(0),_Kat_Oz(0)
 {}
 
 
@@ -40,7 +40,7 @@ void Interp4Set::PrintCmd() const
   /*
    *  Tu trzeba napisać odpowiednio zmodyfikować kod poniżej.
    */
-  cout << GetCmdName() << " " << _Obj_name << " " <<  _Xposition << " " << _Yposition << " " << _DegreeozO << endl;
+  cout << GetCmdName() << " " << _Obj_name << " " <<  _Xposition << " " << _Yposition << " "  << _Kat_Ox << " "  << _Kat_Oy << " "  << _Kat_Oz << " "  << endl;
 }
 
 
@@ -56,11 +56,17 @@ const char* Interp4Set::GetCmdName() const
 /*!
  *
  */
-bool Interp4Set::ExecCmd( MobileObj  *pMobObj,  int  Socket) const
+bool Interp4Set::ExecCmd( MobileObj  *pMobObj,  AccessControl *pAccessCtrl) const
 {
-  /*
-   *  Tu trzeba napisać odpowiedni kod.
-   */
+  Vector3D new_position = pMobObj->GetPositoin_m();
+  new_position[0] = this->_Xposition;
+  new_position[1] = this->_Yposition;
+  pMobObj->SetPosition_m(new_position);
+
+  pMobObj->SetAng_Roll_deg(this->_Kat_Ox);
+  pMobObj->SetAng_Pitch_deg(this->_Kat_Oy);
+  pMobObj->SetAng_Yaw_deg(this->_Kat_Oz);
+  usleep(300000);
   return true;
 }
 
@@ -88,12 +94,23 @@ bool Interp4Set::ReadParams(std::istream& Strm_CmdsList)
         return 1;
     }
 
-    if(!(Strm_CmdsList >> _DegreeozO))
+    if(!(Strm_CmdsList >> _Kat_Ox))
     {
-        std::cout << "Blad kata"<< endl;
+        std::cout << "Blad kata Ox"<< endl;
         return 1;
     }
     
+    if(!(Strm_CmdsList >> _Kat_Oy))
+    {
+        std::cout << "Blad kata Oy"<< endl;
+        return 1;
+    }
+
+    if(!(Strm_CmdsList >> _Kat_Oz))
+    {
+        std::cout << "Blad kata Oz"<< endl;
+        return 1;
+    }
 
 
   return true;

@@ -29,7 +29,9 @@ class Interp4Set: public Interp4Command {
   std::string _Obj_name;
   double  _Xposition;
   double  _Yposition;
-  double  _DegreeozO;
+  double  _Kat_Ox;
+  double  _Kat_Oy;
+  double  _Kat_Oz;
  public:
   /*!
    * \brief
@@ -50,7 +52,7 @@ class Interp4Set: public Interp4Command {
   /*!
    * \brief Wykonuje polecenie oraz wizualizuje jego realizację
    */
-  virtual bool ExecCmd( MobileObj  *pMobObj, int Socket) const;
+  virtual bool ExecCmd( MobileObj  *pMobObj, AccessControl *pAccessCtrl) const;
   /*!
    * \brief Czyta wartości parametrów danego polecenia
    */
