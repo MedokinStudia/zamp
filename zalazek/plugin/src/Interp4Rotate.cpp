@@ -135,8 +135,6 @@ bool Interp4Rotate::ReadParams(std::istream& Strm_CmdsList)
 {
   Strm_CmdsList >>_Angular_speedoS >> _Axis_Name >> _DegreeO;
   return !Strm_CmdsList.fail();
-
-  return true;
 }
 
 

@@ -76,44 +76,8 @@ bool Interp4Set::ExecCmd( MobileObj  *pMobObj,  AccessControl *pAccessCtrl) cons
  */
 bool Interp4Set::ReadParams(std::istream& Strm_CmdsList)
 {
-    if(!(Strm_CmdsList >> _Obj_name))
-    {
-        std::cout << "Blad nazwy"<< endl;
-        return 1;
-    }
-
-    if(!(Strm_CmdsList >> _Xposition))
-    {
-        std::cout << "Blad WspX"<< endl;
-        return 1;
-    }
-
-    if(!(Strm_CmdsList >> _Yposition))
-    {
-        std::cout << "Blad Wspy"<< endl;
-        return 1;
-    }
-
-    if(!(Strm_CmdsList >> _Kat_Ox))
-    {
-        std::cout << "Blad kata Ox"<< endl;
-        return 1;
-    }
-    
-    if(!(Strm_CmdsList >> _Kat_Oy))
-    {
-        std::cout << "Blad kata Oy"<< endl;
-        return 1;
-    }
-
-    if(!(Strm_CmdsList >> _Kat_Oz))
-    {
-        std::cout << "Blad kata Oz"<< endl;
-        return 1;
-    }
-
-
-  return true;
+  Strm_CmdsList >> _Xposition >> _Yposition >> _Kat_Ox >> _Kat_Oy>> _Kat_Oz;
+  return !Strm_CmdsList.fail();
 }
 
 

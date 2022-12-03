@@ -77,7 +77,7 @@ bool Interp4Move::ExecCmd( MobileObj  *pMobObj,  AccessControl *pAccessCtrl) con
     usleep(100000);
 
   }
-  cout<<"Move DONE ";
+  cout<<"Move DONE "<<endl;
   return true;
 }
 
@@ -87,25 +87,8 @@ bool Interp4Move::ExecCmd( MobileObj  *pMobObj,  AccessControl *pAccessCtrl) con
  */
 bool Interp4Move::ReadParams(std::istream& Strm_CmdsList)
 {
-  if(!(Strm_CmdsList >> _Obj_name))
-    {
-        std::cout << "Blad nazwy obiektu"<< endl;
-        return 1;
-    }
-
-    if(!(Strm_CmdsList >> _Speed_mmS))
-    {
-        std::cout << "Blad predkosci"<< endl;
-        return 1;
-    }
-
-    if(!(Strm_CmdsList >> _Distance_m))
-    {
-        std::cout << "Blad dystansu"<< endl;
-        return 1;
-    }
-    
-  return true;
+  Strm_CmdsList>> _Speed_mmS >> _Distance_m;
+  return !Strm_CmdsList.fail();
 }
 
 

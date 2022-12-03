@@ -59,6 +59,7 @@ const char* Interp4Pause::GetCmdName() const
 bool Interp4Pause::ExecCmd( MobileObj  *pMobObj,  AccessControl *pAccessCtrl) const
 {
   usleep(_Time_mS* 1000);
+  cout<<"Pause done" <<endl;
   return true;
 }
 
@@ -68,12 +69,8 @@ bool Interp4Pause::ExecCmd( MobileObj  *pMobObj,  AccessControl *pAccessCtrl) co
  */
 bool Interp4Pause::ReadParams(std::istream& Strm_CmdsList)
 {
-    if(!(Strm_CmdsList >> _Time_mS))
-    {
-        std::cout << "Blad czasu pauzy"<< endl;
-        return 1;
-    }
-  return true;
+  Strm_CmdsList >> _Time_mS;
+  return !Strm_CmdsList.fail();
 }
 
 
