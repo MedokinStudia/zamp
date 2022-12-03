@@ -7,7 +7,6 @@ Rotate helikopter_baza.ogon.ogon_smiglo 30 Z 720
 End_Parallel_Actions
 
 Begin_Parallel_Actions
-Pause 3000
 Move helikopter_baza 0.2 4
 Rotate helikopter_baza.smiglo_1 30 Y 720
 Rotate helikopter_baza.ogon.ogon_smiglo 30 Z 720

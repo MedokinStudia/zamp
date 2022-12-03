@@ -58,7 +58,7 @@ const char* Interp4Pause::GetCmdName() const
  */
 bool Interp4Pause::ExecCmd( MobileObj  *pMobObj,  AccessControl *pAccessCtrl) const
 {
-  usleep(_Time_mS* 1000);
+  usleep(_Time_mS * 1000);
   cout<<"Pause done" <<endl;
   return true;
 }

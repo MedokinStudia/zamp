@@ -51,11 +51,10 @@ bool OpenConnection(int & rSocket) {
   return true;
 }
 
-void close(int Socket, Sender & ClientSender, thread t) {
+  void close(int Socket, Sender & ClientSender, thread t) {
   cout << "Close(połączenie zamknięte)\n" << endl;
   Send(Socket, "Close\n");
   ClientSender.CancelCountinueLooping();
   t.join();
   close(Socket);
-
 }

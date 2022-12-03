@@ -52,7 +52,7 @@ int main()
     cout << "Nawiązano połączenie z serwerem." << endl;
   cout<<endl;
 
-  Sender * _Sender = new Sender(Socket4Sending, LibraryList -> getScene());
+  //Sender * _Sender = new Sender(Socket4Sending, LibraryList -> getScene());
 
   /* const char *sConfigCmds =
   "Clear\n"
@@ -75,13 +75,18 @@ int main()
   cout << ruch <<endl;
   */
 
+  Sender _Sender(Socket4Sending, LibraryList -> getScene());
+  thread Thread4Sending(Fun_CommunicationThread, &_Sender);
   
-  //thread Thread4Sending(Fun_CommunicationThread, &_Sender);
   LibraryList -> ExecPreprocessor("program.cmd", iStrm);
   LibraryList -> ReadCommands(iStrm, Socket4Sending);
-
-  //close(Socket4Sending, _Sender, move(Thread4Sending));
-  Send(Socket4Sending,"Close\n");
- 
+  
+  //close(Socket4Sending, *_Sender, move(Thread4Sending));
+  
+  cout << "Close(połączenie zamknięte)\n" << endl;
+  Send(Socket4Sending, "Close\n");
+  _Sender.CancelCountinueLooping();
+  Thread4Sending.join();
+  close(Socket4Sending);
   return 0;
 }

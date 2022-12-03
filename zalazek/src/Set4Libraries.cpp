@@ -77,8 +77,7 @@ bool Set4Libraries::ReadCommands(std::istringstream & iStrm, int socket) {
 
         flag = false;
       }
-
-      // Tworzy komendę na podstawie funkcji wtyczki
+      
 
       if (flag) {
         Interp4Command * pCommand = Iter -> second -> pCreateCmd();
