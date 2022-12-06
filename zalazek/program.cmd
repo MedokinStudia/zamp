@@ -1,3 +1,9 @@
+Begin_Parallel_Actions
+Rotate helikopter_baza 15 Z 360
+Move helikopter_baza 1 24
+Pause 10
+End_Parallel_Actions
+
 
 Begin_Parallel_Actions
 Set helikopter_baza 0 0 0 0 0

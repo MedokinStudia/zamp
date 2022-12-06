@@ -82,9 +82,7 @@ bool Interp4Rotate::ExecCmd( MobileObj  *pMobObj,  AccessControl *pAccessCtrl) c
 
   while (setpoint != progress)
   {
-    //std::cout<<"beforeLockAccess"<<std::endl;
     pAccessCtrl->LockAccess();
-    //std::cout<<"afterLockAccess"<<std::endl;
     progress += this->_Angular_speedoS;
 
     if (direction == 1)
@@ -116,11 +114,9 @@ bool Interp4Rotate::ExecCmd( MobileObj  *pMobObj,  AccessControl *pAccessCtrl) c
       pMobObj->SetAng_Yaw_deg(progress);
       break;
     }
-    //std::cout<<"jestem pprzed markchange"<<std::endl;
+    
     pAccessCtrl->MarkChange();
-    //std::cout<<"jestem pprzed uACWCESe"<<std::endl;
     pAccessCtrl->UnlockAccess();
-    //std::cout<<"witfi"<<std::endl;
     usleep(100000);
   }
   std::cout<<"Rotate Done "<<endl;

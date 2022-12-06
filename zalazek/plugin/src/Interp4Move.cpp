@@ -59,18 +59,23 @@ const char* Interp4Move::GetCmdName() const
  */
 bool Interp4Move::ExecCmd( MobileObj  *pMobObj,  AccessControl *pAccessCtrl) const
 {
-  int direction = this->_Speed_mmS > 0 ? 1 : -1;
+  int direction = this->_Speed_mmS > 0 ? 1 : -1; //jezeli predkosc ujemna to kierunek ujemny
   int iterations = std::floor(this->_Distance_m/this->_Speed_mmS);
 
   for (int i = 0; i < iterations; ++i)
   {
     pAccessCtrl->LockAccess();
     Vector3D position = pMobObj->GetPositoin_m();
-    double angle = pMobObj->GetAng_Roll_deg();
-
-    position[0] += this->_Speed_mmS * direction * cos(M_PI * angle/180);
-    position[1] += this->_Speed_mmS * direction * sin(M_PI * angle/180);
-
+    double angleX = pMobObj->GetAng_Roll_deg();
+    double angleY = pMobObj->GetAng_Pitch_deg();
+    double angleZ = pMobObj->GetAng_Yaw_deg();
+    
+    //position[0] += this->_Speed_mmS * direction * cos(M_PI * angle/180);
+    //position[1] += this->_Speed_mmS * direction * sin(M_PI * angle/180);
+    position[0] += this->_Speed_mmS * direction * (cos(M_PI * angleY/180) * cos(M_PI * angleZ/180));
+    position[1] += this->_Speed_mmS * direction * (sin(M_PI * angleX/180) * sin(M_PI * angleZ/180) + cos(M_PI * angleZ/180) * sin(M_PI * angleY/180) * cos(M_PI * angleX/180));
+    position[2] += this->_Speed_mmS * direction * (sin(M_PI * angleX/180) * sin(M_PI * angleZ/180) - cos(M_PI * angleX/180) * cos(M_PI * angleZ/180) * sin(M_PI * angleY/180));
+    
     pMobObj->SetPosition_m(position);
     pAccessCtrl->MarkChange();
     pAccessCtrl->UnlockAccess();
